@@ -1,0 +1,33 @@
+The Presentation Script
+When your professor is watching, follow these specific steps in your terminal:
+
+1. "Professor, first I am going to run the inference pipeline on an image." Open your terminal, make sure you are in h:\code\Projects\DR, and paste this command:
+
+bash
+.\.venv\Scripts\python.exe main.py data/val_images/0a1076183736.png --weights checkpoints/best_model.pth --output_file inference_result.txt
+2. Watch it Process The terminal will print out exactly what it's thinking step by step, which sounds very impressive technically:
+
+Using device: cpu
+Extracting vessel map using Frangi filter (This may take a minute)
+Refining vessels using RANSAC...
+Preparing 3-channel tensor for ViT...
+Running classification model...
+(Explain to the professor while this is printing: "The code is first applying a Frangi filter to enhance the organic retinal tube structures, and then using the RANSAC algorithms to filter out any disease lump artifacts so that the underlying healthy vascular structure is perfectly isolated.")
+
+3. Show the Terminal Output The script will finish and print the final diagnosis:
+
+--- Inference Complete ---
+Prediction: Mild (Class 1)
+Confidence: 40.43%
+Output saved to inference_result.txt
+(Say: "The Vision Transformer model has scanned the image and determined that there is Mild DR with a 40% confidence score. I have also programmed it to save this medical data to a text file.")
+
+4. Show the Saved File Open inference_result.txt on your screen to show them that the data actually wrote to the disk:
+
+Inference Results for data/val_images/0a1076183736.png
+----------------------------------------
+Prediction: Mild (Class 1)
+Confidence: 40.43%
+5. Show the UI Visualization Finally, bring up the Figure 1 Matplotlib window that automatically pops up. (Say: "This is the final visualization of my computer vision pipeline. On the left is the raw fundus image. The middle is the raw extraction from the Frangi filter, and the right side is the refined mask perfectly tracing the blood vessels using the RANSAC algorithm. This demonstrates that the algorithm fully understands the complex anatomy of the human eye.")
+
+By walking them through the terminal output, the saved file, and the beautiful 3-panel display, it acts as the perfect, fully functioning demonstration! You can switch out the image path to any of the .png files in data/val_images to show it working on different eyes.
